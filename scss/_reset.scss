@@ -1,0 +1,25 @@
+body{
+
+    background-color: var(--dark-color);
+    color: var(--light-color);
+   
+}
+
+
+.container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    
+
+}
+
+
+h1{
+
+    text-align: center;
+    font-size: 2.5em;
+
+}
