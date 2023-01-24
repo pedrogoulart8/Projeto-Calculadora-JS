@@ -1,3 +1,7 @@
+import { calculate } from "./calculate.js"
+import { clear } from "./clear.js"
+import { btnCopiar} from "./btnCopiar.js"
+import { trocarTema } from "./themeSwitcher.js"
 
 const body = document.querySelector('body')
 const root = document.querySelector(':root')
@@ -58,89 +62,15 @@ result.addEventListener('keydown', function(ev){
 
 })
 
-
-function calculate(){
-
-    //Assim que o usuario clicar para calcular por padrão ira aparecer essa msg
-    copyResult.value = 'ERROR'
-
-    //Porém, caso o eval seja verdadeiro, a funcionalidade acima será substituida por essas debaixo
-    const finalResult = eval(result.value)
-    copyResult.value = finalResult
-
-}
-
-
+//Calcular valores do visor
 document.getElementById('equal').addEventListener('click', calculate)
 
-
-
 //Limpar valores da calculadora
-document.getElementById('clear').addEventListener('click', function(){
-
-    result.value = ''
-    result.focus()
-    copyResult.value = ''
-    
-
-    copyBtn.innerText = 'Copiar'
-
-})
-
+document.getElementById('clear').addEventListener('click', clear)
 
 //Copiando o valor da calculadora para utilizar em outras aplicações
-document.getElementById('btnCopiar').addEventListener('click', function(ev){
-
-    //Seleciona quem acionou o evento, que é o proprio botão
-    const copyBtn = ev.currentTarget
-
-    if(copyBtn.innerText === 'Copiar'){
-
-        copyBtn.innerText = 'Copiado!'
-        copyBtn.classList.add('btnCopiarCores')
-       
-        
-        //Copiando valores da calculadora
-        navigator.clipboard.writeText(copyResult.value)
-
-
-    }else{
-
-        copyBtn.innerText = 'Copiar'
-        copyBtn.classList.remove('btnCopiarCores')
-
-    }
-
-})
-
+document.getElementById('btnCopiar').addEventListener('click', btnCopiar)
 
 //Trocando cores do tema
-document.getElementById('btn-tema').addEventListener('click', function(){
-
-    if(body.dataset.theme === 'Dark'){
-
-        //Alterando as propriedades das variaveis de cores
-        root.style.setProperty('--dark-color', '#DDDDDD')
-        root.style.setProperty('--light-color', '#111111')
-        root.style.setProperty('--green-color', '#212529')
-
-        body.dataset.theme = 'Light'
-        
-        
-    }else{
-
-        root.style.setProperty('--dark-color', '#111111')
-        root.style.setProperty('--light-color', '#DDDDDD')
-        root.style.setProperty('--green-color', '#4dff91')
-        
-        body.dataset.theme = 'Dark'
-
-    }
-
-
-
-
-
-})
-
+document.getElementById('btn-tema').addEventListener('click', trocarTema)
 
